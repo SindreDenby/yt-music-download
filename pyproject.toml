@@ -1,0 +1,12 @@
+[project]
+name = "youtube-music-authorized-downloader"
+version = "0.1.0"
+description = "Local downloader service for media you are authorized to download."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "yt-dlp>=2025.1.15",
+]
+
+[tool.uv]
+package = false

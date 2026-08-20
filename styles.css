@@ -1,0 +1,30 @@
+#authorized-download-button {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  border-radius: 18px;
+  color: var(--ytmusic-text-secondary, #aaa);
+  cursor: pointer;
+  display: inline-flex;
+  font-family: inherit;
+  font-size: 20px;
+  gap: 5px;
+  justify-content: center;
+  min-height: 36px;
+  min-width: 36px;
+  padding: 0 9px;
+  transition: background .15s ease, color .15s ease;
+  flex: 0 0 auto;
+  align-self: center;
+  vertical-align: middle;
+}
+
+#authorized-download-button:hover,
+#authorized-download-button:focus-visible {
+  background: rgba(255, 255, 255, .12);
+  color: var(--ytmusic-text-primary, #fff);
+  outline: none;
+}
+
+#authorized-download-button:disabled { cursor: wait; opacity: .65; }
+.download-label { font-size: 12px; }

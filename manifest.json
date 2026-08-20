@@ -1,0 +1,29 @@
+{
+  "manifest_version": 3,
+  "name": "YouTube Music Authorized Downloader",
+  "version": "1.0.0",
+  "description": "Adds a download button to the YouTube Music player for media you are authorized to download.",
+  "permissions": [
+    "storage",
+    "downloads"
+  ],
+  "host_permissions": [
+    "https://music.youtube.com/*",
+    "http://127.0.0.1:8765/*"
+  ],
+  "action": {
+    "default_title": "YouTube Music Downloader"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "options_page": "options.html",
+  "content_scripts": [
+    {
+      "matches": ["https://music.youtube.com/*"],
+      "js": ["content.js"],
+      "css": ["styles.css"],
+      "run_at": "document_idle"
+    }
+  ]
+}

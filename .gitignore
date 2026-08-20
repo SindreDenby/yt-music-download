@@ -1,0 +1,21 @@
+.venv/
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Local downloader output
+yt-music-downloads/
+
+# Logs and local environment files
+*.log
+.env
+.env.*
+!.env.example
+
+# Editor and operating-system files
+.idea/
+.vscode/
+*.swp
+*.swo
+Thumbs.db
+Desktop.ini

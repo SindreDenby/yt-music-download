@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>YouTube Music Downloader Settings</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <main>
+    <h1>Downloader settings</h1>
+    <p>The extension sends the current track URL to a downloader you control.</p>
+    <label for="endpoint">Downloader endpoint</label>
+    <input id="endpoint" type="url" spellcheck="false">
+    <button id="save" type="button">Save</button>
+    <output id="status" role="status"></output>
+    <p class="note">The included local server uses yt-dlp and FFmpeg. Only download media you own or have permission to use.</p>
+  </main>
+  <script src="options.js"></script>
+</body>
+</html>
