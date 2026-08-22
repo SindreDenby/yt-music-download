@@ -13,7 +13,8 @@ import tempfile
 import urllib.parse
 from http.server import BaseHTTPRequestHandler, HTTPServer
 
-HOST, PORT = "127.0.0.1", 8765
+HOST = os.environ.get("HOST", "127.0.0.1")
+PORT = int(os.environ.get("PORT", "8765"))
 
 
 def get_download_dir():
@@ -26,7 +27,7 @@ def get_download_dir():
     return os.path.join(base_dir, "yt-music-downloads")
 
 
-DOWNLOAD_DIR = get_download_dir()
+DOWNLOAD_DIR = os.environ.get("DOWNLOAD_DIR", get_download_dir())
 
 
 class Handler(BaseHTTPRequestHandler):

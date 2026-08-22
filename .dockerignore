@@ -1,0 +1,12 @@
+.git
+.gitignore
+.venv
+__pycache__
+*.py[cod]
+yt-music-downloads
+*.log
+.env
+.env.*
+!.env.example
+Dockerfile
+README.md

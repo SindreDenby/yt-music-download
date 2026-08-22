@@ -98,6 +98,17 @@ Leave this terminal open while using the extension. The server runs at:
 http://127.0.0.1:8765
 ```
 
+### Docker
+
+Build and run the backend with FFmpeg included:
+
+```bash
+docker build -t yt-music-downloader .
+docker run --rm -p 127.0.0.1:8765:8765 -v yt-music-downloads:/data yt-music-downloader
+```
+
+The published port is limited to localhost, matching the native server's local-only behavior. The `/data` volume stores temporary converted files between container restarts.
+
 ### 4. Load the Chrome extension
 
 1. Open `chrome://extensions`.
@@ -121,4 +132,3 @@ GET /health
 ```
 
 If the backend is unavailable, the button immediately reports `Backend offline` instead of waiting for a failed conversion request.
-
