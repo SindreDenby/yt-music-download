@@ -109,6 +109,14 @@ docker run --rm -p 127.0.0.1:8765:8765 -v yt-music-downloads:/data yt-music-down
 
 The published port is limited to localhost, matching the native server's local-only behavior. The `/data` volume stores temporary converted files between container restarts.
 
+The same setup can be managed with Docker Compose:
+
+```bash
+docker compose up --build -d
+docker compose logs -f downloader
+docker compose down
+```
+
 ### 4. Load the Chrome extension
 
 1. Open `chrome://extensions`.
