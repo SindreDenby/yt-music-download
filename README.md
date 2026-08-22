@@ -104,10 +104,12 @@ Build and run the backend with FFmpeg included:
 
 ```bash
 docker build -t yt-music-downloader .
-docker run --rm -p 127.0.0.1:8765:8765 -v yt-music-downloads:/data yt-music-downloader
+docker run --rm -p 192.168.1.67:8765:8765 -v yt-music-downloads:/data yt-music-downloader
 ```
 
-The published port is limited to localhost, matching the native server's local-only behavior. The `/data` volume stores temporary converted files between container restarts.
+The published port is bound to `192.168.1.67`. The `/data` volume stores temporary converted files between container restarts.
+
+When using the Compose service, set the extension's downloader endpoint to `http://192.168.1.67:8765/download` from its options page.
 
 The same setup can be managed with Docker Compose:
 
