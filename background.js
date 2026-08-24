@@ -16,7 +16,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 });
 
 async function checkBackend(endpoint) {
-  const healthUrl = new URL(`${endpoint.replace(/\/+$/, '')}/health`);
+  const healthUrl = endpointUrl(endpoint, '/health');
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 500);
   try {
@@ -28,7 +28,7 @@ async function checkBackend(endpoint) {
 }
 
 async function downloadTrack(endpoint, track) {
-  const response = await fetch(`${endpoint.replace(/\/+$/, '')}/download`, {
+  const response = await fetch(endpointUrl(endpoint, '/download'), {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(track)
@@ -55,7 +55,7 @@ chrome.downloads.onChanged.addListener((delta) => {
 });
 
 async function cleanupFiles(endpoint, url) {
-  const cleanupUrl = new URL(`${endpoint.replace(/\/+$/, '')}/cleanup`);
+  const cleanupUrl = endpointUrl(endpoint, '/cleanup');
   try {
     await fetch(cleanupUrl, {
       method: 'POST',
@@ -65,6 +65,14 @@ async function cleanupFiles(endpoint, url) {
   } catch (error) {
     console.warn('[YouTube Music Downloader] Cleanup failed', error);
   }
+}
+
+function endpointUrl(endpoint, path) {
+  const url = new URL(endpoint);
+  url.pathname = path;
+  url.search = '';
+  url.hash = '';
+  return url;
 }
 
 function bufferToBase64(buffer) {
