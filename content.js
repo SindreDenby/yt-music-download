@@ -2,18 +2,22 @@
   'use strict';
 
   const BUTTON_ID = 'authorized-download-button';
-  const DEFAULT_ENDPOINT = 'http://127.0.0.1:8765/download';
-  let endpoint = DEFAULT_ENDPOINT;
+  const DEFAULT_ENDPOINT = 'http://127.0.0.1:8765';
+  let endpoint = normalizeEndpoint(DEFAULT_ENDPOINT);
   let lastUrl = '';
 
+  function normalizeEndpoint(value) {
+    return value.replace(/\/+$/, '').replace(/\/download$/i, '');
+  }
+
   chrome.storage.sync.get({ endpoint: DEFAULT_ENDPOINT }, (settings) => {
-    endpoint = settings.endpoint || DEFAULT_ENDPOINT;
+    endpoint = normalizeEndpoint(settings.endpoint || DEFAULT_ENDPOINT);
     installButton();
   });
 
   chrome.storage.onChanged.addListener((changes, area) => {
     if (area === 'sync' && changes.endpoint) {
-      endpoint = changes.endpoint.newValue || DEFAULT_ENDPOINT;
+      endpoint = normalizeEndpoint(changes.endpoint.newValue || DEFAULT_ENDPOINT);
     }
   });
 

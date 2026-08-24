@@ -16,9 +16,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 });
 
 async function checkBackend(endpoint) {
-  const healthUrl = new URL(endpoint);
-  healthUrl.pathname = '/health';
-  healthUrl.search = '';
+  const healthUrl = new URL(`${endpoint.replace(/\/+$/, '')}/health`);
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 500);
   try {
@@ -30,7 +28,7 @@ async function checkBackend(endpoint) {
 }
 
 async function downloadTrack(endpoint, track) {
-  const response = await fetch(endpoint, {
+  const response = await fetch(`${endpoint.replace(/\/+$/, '')}/download`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(track)
@@ -57,9 +55,7 @@ chrome.downloads.onChanged.addListener((delta) => {
 });
 
 async function cleanupFiles(endpoint, url) {
-  const cleanupUrl = new URL(endpoint);
-  cleanupUrl.pathname = '/cleanup';
-  cleanupUrl.search = '';
+  const cleanupUrl = new URL(`${endpoint.replace(/\/+$/, '')}/cleanup`);
   try {
     await fetch(cleanupUrl, {
       method: 'POST',
