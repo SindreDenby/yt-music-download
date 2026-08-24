@@ -2,7 +2,7 @@
   'use strict';
 
   const BUTTON_ID = 'authorized-download-button';
-  const DEFAULT_ENDPOINT = 'http://192.168.1.67:8765/download';
+  const DEFAULT_ENDPOINT = 'http://127.0.0.1:8765/download';
   let endpoint = DEFAULT_ENDPOINT;
   let lastUrl = '';
 

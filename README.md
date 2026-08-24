@@ -100,22 +100,21 @@ http://127.0.0.1:8765
 
 ### Docker
 
-Build and run the backend with FFmpeg included:
-
-```bash
-docker build -t yt-music-downloader .
-docker run --rm -p 192.168.1.67:8765:8765 -v yt-music-downloads:/data yt-music-downloader
-```
-
-The published port is bound to `192.168.1.67`. The `/data` volume stores temporary converted files between container restarts.
-
-When using the Compose service, set the extension's downloader endpoint to `http://192.168.1.67:8765/download` from its options page.
-
-The same setup can be managed with Docker Compose:
+The quickest way to run the backend is Docker Compose — FFmpeg and `yt-dlp` are included in the image:
 
 ```bash
 docker compose up --build -d
-docker compose logs -f downloader
+```
+
+The server is now available at:
+
+```text
+http://127.0.0.1:8765
+```
+
+Stop it when you are done:
+
+```bash
 docker compose down
 ```
 
@@ -126,6 +125,10 @@ docker compose down
 3. Click **Load unpacked**.
 4. Select this project directory. On macOS, this is the folder containing `manifest.json`.
 5. Confirm that **YouTube Music Authorized Downloader** loads without errors.
+
+## Configuration
+
+The extension defaults to `http://127.0.0.1:8765/download`. To point it at another backend, open the extension's options page (`chrome://extensions` → **YouTube Music Authorized Downloader** → **Details** → **Extension options**) and set any `http` or `https` URL.
 
 ## Usage
 

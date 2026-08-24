@@ -1,4 +1,4 @@
-const DEFAULT_ENDPOINT = 'http://192.168.1.67:8765/download';
+const DEFAULT_ENDPOINT = 'http://127.0.0.1:8765/download';
 const endpoint = document.getElementById('endpoint');
 const status = document.getElementById('status');
 
